@@ -1,6 +1,4 @@
 
-
-
 // Individual Players Dictionary
 
 let player1: [String : Any] = [
@@ -237,5 +235,5 @@ print ("TEAM SHARKS  --- Number of players: \(teamSharks.count)    average heigh
 print ("TEAM DRAGONS --- Number of players: \(teamDragons.count)    average height: \(dragonsAverageHeight)")
 
 
-
+// test comment
 
