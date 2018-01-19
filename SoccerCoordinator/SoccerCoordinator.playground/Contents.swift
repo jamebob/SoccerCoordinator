@@ -110,7 +110,7 @@ let player18: [String : Any] = [
     "guardians": "Hyman and Rachel Krustofski"]
 
 
-//averge hight var
+//averge height var
 var dragonsAverageHeight: Double = 0
 var sharksAverageHeight: Double = 0
 var raptorsAverageHeight: Double = 0
@@ -123,7 +123,7 @@ var allPlayers = [player1, player2, player3, player4, player5, player6, player7,
 
 
 
-// Has Experiance
+// Sort Players by Experience
 var experiencedPlayers: [[String: Any]] = []
 var unexperiencedPlayers: [[String: Any]] = []
 
@@ -132,8 +132,6 @@ var unexperiencedPlayers: [[String: Any]] = []
 var teamDragons: [[String: Any]] = []
 var teamSharks: [[String: Any]] = []
 var teamRaptors: [[String: Any]] = []
-
-
 
 
 // Sorting players into teams
@@ -145,7 +143,6 @@ for player in allPlayers {
         unexperiencedPlayers.append(player)
     }
 }
-
 
 
 // assinging expireanced players to teams
@@ -202,8 +199,6 @@ for player in unexperiencedPlayers {
 
 
 
-
-
 //  calculate average height
 func callculateAverageHeight(ofTeam teamToCalculate: [[String: Any]]) -> Double {
     let playerCount = Double(teamToCalculate.count)
@@ -215,8 +210,6 @@ func callculateAverageHeight(ofTeam teamToCalculate: [[String: Any]]) -> Double 
         playerHeight = player["height"]as! Double
         totalHeight = totalHeight + playerHeight
         averageHeight = totalHeight / playerCount
-        
-        playerHeight
     }
     return averageHeight
 }
@@ -229,11 +222,27 @@ sharksAverageHeight = callculateAverageHeight(ofTeam: teamSharks)
 raptorsAverageHeight = callculateAverageHeight(ofTeam: teamRaptors)
 
 
+var letters: [String: Any] = [:]
 
-print ("TEAM RAPTORS --- Number of players: \(teamRaptors.count)    average height: \(raptorsAverageHeight)")
+for players in teamDragons{
+    letters["name"] = players["name"]as! String
+    print   ("Hi \(players["guardians"]as! String), \n\(players["name"]as! String) is on the Dragions Team and Next Practice is on March 17th, at 1 p.m.\n")
+}
+
+for players in teamSharks{
+    letters["name"] = players["name"]as! String
+    print   ("Hi \(players["guardians"]as! String),\n\(players["name"]as! String) is on the Sharks Team and Next Practice is on March 17th, at 3 p.m.\n")
+    
+}
+
+for players in teamRaptors{
+    letters["name"] = players["name"]as! String
+    print   ("Hi \(players["guardians"]as! String),\n\(players["name"]as! String) is on the Raptors Team and Next Practice is on March 18th, at 1 p.m.\n")
+    
+}
+
+
+
+print ("\nTEAM RAPTORS --- Number of players: \(teamRaptors.count)    average height: \(raptorsAverageHeight)")
 print ("TEAM SHARKS  --- Number of players: \(teamSharks.count)    average height: \(sharksAverageHeight)")
 print ("TEAM DRAGONS --- Number of players: \(teamDragons.count)    average height: \(dragonsAverageHeight)")
-
-
-// test comment
-
