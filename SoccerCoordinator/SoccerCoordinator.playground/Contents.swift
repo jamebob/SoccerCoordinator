@@ -1,6 +1,5 @@
 
-// Individual Players Dictionary
-
+// Individual Players Dictionaries
 let player1: [String : Any] = [
     "name": "Joe Smith",
     "height": 42.0,
@@ -110,7 +109,7 @@ let player18: [String : Any] = [
     "guardians": "Hyman and Rachel Krustofski"]
 
 
-//averge height var
+//verge height variables
 var dragonsAverageHeight: Double = 0
 var sharksAverageHeight: Double = 0
 var raptorsAverageHeight: Double = 0
@@ -134,16 +133,16 @@ var teamSharks: [[String: Any]] = []
 var teamRaptors: [[String: Any]] = []
 
 
-// Sorting players into teams
+// sorting players into teams
 for player in allPlayers {
-    let experienceLevel = player["experience"] as! Bool
+    if let experienceLevel = player["experience"] as? Bool {
     if experienceLevel == true {
         experiencedPlayers.append(player)
     }     else {
         unexperiencedPlayers.append(player)
     }
 }
-
+}
 
 // assinging expireanced players to teams
 for player in experiencedPlayers {
@@ -199,7 +198,7 @@ for player in unexperiencedPlayers {
 
 
 
-//  calculate average height
+//  function to calculate average height
 func callculateAverageHeight(ofTeam teamToCalculate: [[String: Any]]) -> Double {
     let playerCount = Double(teamToCalculate.count)
     var totalHeight: Double = 0.0
@@ -207,14 +206,15 @@ func callculateAverageHeight(ofTeam teamToCalculate: [[String: Any]]) -> Double 
     var playerHeight: Double = 0.0
     
     for player in teamToCalculate{
-        playerHeight = player["height"]as! Double
+        if let  playerHeight = player["height"] as? Double
+        {
         totalHeight = totalHeight + playerHeight
         averageHeight = totalHeight / playerCount
+        }
     }
     return averageHeight
 }
 // end of function
-
 
 allTeamsAverageHeight = callculateAverageHeight(ofTeam: allPlayers)
 dragonsAverageHeight = callculateAverageHeight(ofTeam: teamDragons)
@@ -222,27 +222,48 @@ sharksAverageHeight = callculateAverageHeight(ofTeam: teamSharks)
 raptorsAverageHeight = callculateAverageHeight(ofTeam: teamRaptors)
 
 
-var letters: [String: Any] = [:]
+//print letters to guardians
+var letters: [String] = []
 
 for players in teamDragons{
-    letters["name"] = players["name"]as! String
-    print   ("Hi \(players["guardians"]as! String), \n\(players["name"]as! String) is on the Dragions Team and Next Practice is on March 17th, at 1 p.m.\n")
+    var guardiansName: String  =  ""
+    var playersName: String  =  ""
+    
+    if let nameOfPlayer = players["name"]as? String{
+        playersName = nameOfPlayer }
+    if let guardianOf = players["guardians"]as? String{
+        guardiansName = guardianOf }
+    
+   print ("Hi \(guardiansName),\n\(playersName) is on the Dragons Team and Next Practice is on March 17th, at 1 p.m.\n") 
 }
 
 for players in teamSharks{
-    letters["name"] = players["name"]as! String
-    print   ("Hi \(players["guardians"]as! String),\n\(players["name"]as! String) is on the Sharks Team and Next Practice is on March 17th, at 3 p.m.\n")
+    var guardiansName: String  =  ""
+    var playersName: String  =  ""
     
+    if let nameOfPlayer = players["name"]as? String{
+        playersName = nameOfPlayer }
+    if let guardianOf = players["guardians"]as? String{
+        guardiansName = guardianOf }
+    
+    print ("Hi \(guardiansName),\n\(playersName) is on the Sharks Team and Next Practice is on March 17th, at 3p.m.\n")
 }
 
 for players in teamRaptors{
-    letters["name"] = players["name"]as! String
-    print   ("Hi \(players["guardians"]as! String),\n\(players["name"]as! String) is on the Raptors Team and Next Practice is on March 18th, at 1 p.m.\n")
+    var guardiansName: String  =  ""
+    var playersName: String  =  ""
     
+    if let nameOfPlayer = players["name"]as? String{
+        playersName = nameOfPlayer }
+    if let guardianOf = players["guardians"]as? String{
+        guardiansName = guardianOf }
+    
+    print   ("Hi \(guardiansName),\n\(playersName) is on the Raptors Team and Next Practice is on March 18th, at 1 p.m.\n")
 }
 
-
-
+//print teams breakdown with average height for reference
 print ("\nTEAM RAPTORS --- Number of players: \(teamRaptors.count)    average height: \(raptorsAverageHeight)")
 print ("TEAM SHARKS  --- Number of players: \(teamSharks.count)    average height: \(sharksAverageHeight)")
 print ("TEAM DRAGONS --- Number of players: \(teamDragons.count)    average height: \(dragonsAverageHeight)")
+
+print (letters)
