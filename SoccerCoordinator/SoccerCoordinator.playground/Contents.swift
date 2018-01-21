@@ -203,7 +203,6 @@ func callculateAverageHeight(ofTeam teamToCalculate: [[String: Any]]) -> Double 
     let playerCount = Double(teamToCalculate.count)
     var totalHeight: Double = 0.0
     var averageHeight: Double = 0.0
-    var playerHeight: Double = 0.0
     
     for player in teamToCalculate{
         if let  playerHeight = player["height"] as? Double
@@ -223,42 +222,48 @@ raptorsAverageHeight = callculateAverageHeight(ofTeam: teamRaptors)
 
 
 //print letters to guardians
-var letters: [String] = []
+//var dragonsLetter: [String : Any] = []
+//var raptorsLetter: [String : Any] = []
+//var sharksLetter: [String : Any] = []
+
+///populate letters array with letters strings
+var letters:[String] = []
 
 for players in teamDragons{
     var guardiansName: String  =  ""
     var playersName: String  =  ""
-    
     if let nameOfPlayer = players["name"]as? String{
         playersName = nameOfPlayer }
     if let guardianOf = players["guardians"]as? String{
         guardiansName = guardianOf }
+    letters.append ( ("Hi \(guardiansName),\n\(playersName) is on the Dragons Team and Next Practice is on March 17th, at 1 p.m.\n") )
     
-   print ("Hi \(guardiansName),\n\(playersName) is on the Dragons Team and Next Practice is on March 17th, at 1 p.m.\n") 
 }
 
 for players in teamSharks{
     var guardiansName: String  =  ""
     var playersName: String  =  ""
-    
     if let nameOfPlayer = players["name"]as? String{
         playersName = nameOfPlayer }
     if let guardianOf = players["guardians"]as? String{
         guardiansName = guardianOf }
-    
-    print ("Hi \(guardiansName),\n\(playersName) is on the Sharks Team and Next Practice is on March 17th, at 3p.m.\n")
+   letters.append( ("Hi \(guardiansName),\n\(playersName) is on the Sharks Team and Next Practice is on March 17th, at 3p.m.\n"))
 }
 
 for players in teamRaptors{
     var guardiansName: String  =  ""
     var playersName: String  =  ""
-    
     if let nameOfPlayer = players["name"]as? String{
         playersName = nameOfPlayer }
     if let guardianOf = players["guardians"]as? String{
         guardiansName = guardianOf }
-    
-    print   ("Hi \(guardiansName),\n\(playersName) is on the Raptors Team and Next Practice is on March 18th, at 1 p.m.\n")
+   letters.append( ("Hi \(guardiansName),\n\(playersName), is on the Raptors Team and Next Practice is on March 18th, at 1 p.m.\n"))
+}
+
+
+//print all letters
+for letter in 0..<letters.count {
+    print(letters[letter])
 }
 
 //print teams breakdown with average height for reference
@@ -266,4 +271,3 @@ print ("\nTEAM RAPTORS --- Number of players: \(teamRaptors.count)    average he
 print ("TEAM SHARKS  --- Number of players: \(teamSharks.count)    average height: \(sharksAverageHeight)")
 print ("TEAM DRAGONS --- Number of players: \(teamDragons.count)    average height: \(dragonsAverageHeight)")
 
-print (letters)
