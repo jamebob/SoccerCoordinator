@@ -116,10 +116,8 @@ var raptorsAverageHeight: Double = 0
 var allTeamsAverageHeight: Double = 0
 
 
-
 // All Players Array
 var allPlayers = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10, player11, player12, player13, player14, player15, player16, player17, player18]
-
 
 
 // Sort Players by Experience
@@ -220,52 +218,29 @@ dragonsAverageHeight = callculateAverageHeight(ofTeam: teamDragons)
 sharksAverageHeight = callculateAverageHeight(ofTeam: teamSharks)
 raptorsAverageHeight = callculateAverageHeight(ofTeam: teamRaptors)
 
-
-//print letters to guardians
-//var dragonsLetter: [String : Any] = []
-//var raptorsLetter: [String : Any] = []
-//var sharksLetter: [String : Any] = []
-
-///populate letters array with letters strings
+//populate letters array with letters strings
 var letters:[String] = []
 
-for players in teamDragons{
-    var guardiansName: String  =  ""
-    var playersName: String  =  ""
+func createLetter (forteam team:[[String: Any]],teamname:String,practicedate:String)  {
+for players in team{
+   var guardiansName: String  =  ""
+   var playersName: String  =  ""
     if let nameOfPlayer = players["name"]as? String{
         playersName = nameOfPlayer }
     if let guardianOf = players["guardians"]as? String{
         guardiansName = guardianOf }
-    letters.append ( ("Hi \(guardiansName),\n\(playersName) is on the Dragons Team and Next Practice is on March 17th, at 1 p.m.\n") )
-    
+    letters.append(("Hi \(guardiansName),\n\n\(playersName) is on the \(teamname) Team. \nNext Practice is on \(practicedate).\n\nRegards, Coach Treehouse.\n\n"))
 }
-
-for players in teamSharks{
-    var guardiansName: String  =  ""
-    var playersName: String  =  ""
-    if let nameOfPlayer = players["name"]as? String{
-        playersName = nameOfPlayer }
-    if let guardianOf = players["guardians"]as? String{
-        guardiansName = guardianOf }
-   letters.append( ("Hi \(guardiansName),\n\(playersName) is on the Sharks Team and Next Practice is on March 17th, at 3p.m.\n"))
 }
-
-for players in teamRaptors{
-    var guardiansName: String  =  ""
-    var playersName: String  =  ""
-    if let nameOfPlayer = players["name"]as? String{
-        playersName = nameOfPlayer }
-    if let guardianOf = players["guardians"]as? String{
-        guardiansName = guardianOf }
-   letters.append( ("Hi \(guardiansName),\n\(playersName), is on the Raptors Team and Next Practice is on March 18th, at 1 p.m.\n"))
-}
-
+createLetter(forteam: teamSharks, teamname: "Sharks", practicedate: "March 17th, at 3 p.m")
+createLetter(forteam: teamDragons, teamname: "Dragons", practicedate: "March 17th, at 1 p.m")
+createLetter(forteam: teamRaptors, teamname: "Raptors", practicedate: "March 18th, at 1 p.m")
 
 //print all letters
 for letter in 0..<letters.count {
     print(letters[letter])
 }
-
+            
 //print teams breakdown with average height for reference
 print ("\nTEAM RAPTORS --- Number of players: \(teamRaptors.count)    average height: \(raptorsAverageHeight)")
 print ("TEAM SHARKS  --- Number of players: \(teamSharks.count)    average height: \(sharksAverageHeight)")
