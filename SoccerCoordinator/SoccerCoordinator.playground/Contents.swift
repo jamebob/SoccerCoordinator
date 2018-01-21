@@ -224,11 +224,9 @@ var letters:[String] = []
 func createLetter (forteam team:[[String: Any]],teamname:String,practicedate:String)  {
     for players in team{
     
-        guard let nameOfPlayer = players["name"]as? String
-            else {return}
-        guard let guardianOf = players["guardians"]as? String
-            else {return}
-   
+        guard let nameOfPlayer = players["name"]as? String, let guardianOf = players["guardians"]as? String
+        else {return}
+       
 letters.append(("Hi \(guardianOf),\n\n\(nameOfPlayer) is on the \(teamname) Team. \nNext Practice is on \(practicedate).\n\nRegards, Coach Treehouse.\n\n"))
 }
 }
