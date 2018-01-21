@@ -222,14 +222,14 @@ raptorsAverageHeight = callculateAverageHeight(ofTeam: teamRaptors)
 var letters:[String] = []
 
 func createLetter (forteam team:[[String: Any]],teamname:String,practicedate:String)  {
-for players in team{
-   var guardiansName: String  =  ""
-   var playersName: String  =  ""
-    if let nameOfPlayer = players["name"]as? String{
-        playersName = nameOfPlayer }
-    if let guardianOf = players["guardians"]as? String{
-        guardiansName = guardianOf }
-    letters.append(("Hi \(guardiansName),\n\n\(playersName) is on the \(teamname) Team. \nNext Practice is on \(practicedate).\n\nRegards, Coach Treehouse.\n\n"))
+    for players in team{
+    
+        guard let nameOfPlayer = players["name"]as? String
+            else {return}
+        guard let guardianOf = players["guardians"]as? String
+            else {return}
+   
+letters.append(("Hi \(guardianOf),\n\n\(nameOfPlayer) is on the \(teamname) Team. \nNext Practice is on \(practicedate).\n\nRegards, Coach Treehouse.\n\n"))
 }
 }
 createLetter(forteam: teamSharks, teamname: "Sharks", practicedate: "March 17th, at 3 p.m")
