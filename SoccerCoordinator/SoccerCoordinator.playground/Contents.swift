@@ -194,8 +194,6 @@ for player in unexperiencedPlayers {
     }
 }
 
-
-
 //  function to calculate average height
 func callculateAverageHeight(ofTeam teamToCalculate: [[String: Any]]) -> Double {
     let playerCount = Double(teamToCalculate.count)
@@ -243,4 +241,3 @@ for letter in 0..<letters.count {
 print ("\nTEAM RAPTORS --- Number of players: \(teamRaptors.count)    average height: \(raptorsAverageHeight)")
 print ("TEAM SHARKS  --- Number of players: \(teamSharks.count)    average height: \(sharksAverageHeight)")
 print ("TEAM DRAGONS --- Number of players: \(teamDragons.count)    average height: \(dragonsAverageHeight)")
-
